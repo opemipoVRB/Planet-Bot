@@ -34,7 +34,7 @@ class BotResponse(models.Model):
 
     def __str__(self):
         """Return a self.name as representation of the model instance."""
-        return "{} belongs to {} ".format(self.name, self.tenant)
+        return "This reponse belongs to {} ".format(self.bot.name)
 
 
 

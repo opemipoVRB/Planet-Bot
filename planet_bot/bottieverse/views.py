@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
-from .models import Bot
+from .models import Bot, BotResponse
 
 
 def index(request):
@@ -18,5 +18,5 @@ def index(request):
 
 def tenant_bot(request, bot_name):
     bot = get_object_or_404(Bot, name=bot_name)
-    return render(request, 'bottieverse/bot.html', {'bot': bot})
-
+    bot_response = get_object_or_404(BotResponse, bot=bot)
+    return render(request, 'bottieverse/bot.html', {'bot': bot, 'bot_response': bot_response})

@@ -52,7 +52,7 @@ from twisted.internet import reactor
 from twisted.python import log
 
 #
-from planet_bot.planet_bot.ip_utils import get_pub_IP
+from ip_utils import get_pub_IP
 
 port = 3000
 

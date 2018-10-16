@@ -12,7 +12,7 @@
         var m = addZero(d.getMinutes());
 
             $('#message-feed').append(
-                '<div class="message message-from"><div class="message-name"><h1>'+ bot_name + '</h1></div><div class="message-body"><p>Hi, my name is  '+ bot_name +' . please enter your phone number to proceed </p></div><div class="message-timestamp"><p>Today ' + h + ' : ' + m + '</p></div>'
+                '<div class="message message-from"><div class="message-name"><h1>'+ bot_name + '</h1></div><div class="message-body"><p>'+ welcome_message +" " +bot_name +' . please enter your phone number to proceed </p></div><div class="message-timestamp"><p>Today ' + h + ' : ' + m + '</p></div>'
             );
         }
 

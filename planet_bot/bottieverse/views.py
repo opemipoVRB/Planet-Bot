@@ -19,4 +19,7 @@ def index(request):
 def tenant_bot(request, bot_name):
     bot = get_object_or_404(Bot, name=bot_name)
     bot_response = get_object_or_404(BotResponse, bot=bot)
-    return render(request, 'bottieverse/bot.html', {'bot': bot, 'bot_response': bot_response})
+    if bot_response.welcome_message:
+        welcome_message = bot_response.response
+    return render(request, 'bottieverse/bot.html',
+                  {'bot': bot, 'bot_response': bot_response, 'welcome_message': welcome_message})

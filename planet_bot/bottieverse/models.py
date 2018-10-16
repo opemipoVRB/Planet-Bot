@@ -27,8 +27,8 @@ class Bot(models.Model):
 
 class BotResponse(models.Model):
     bot = models.ForeignKey(Bot, on_delete=models.CASCADE)
-
-    response = models.CharField(max_length=255)
+    welcome_message = models.BooleanField(default=False)
+    response = models.CharField(max_length=255, default="No message")
     required_threshold = models.FloatField(default=0.0)
     confidence_threshold = models.FloatField(default=0.0)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -42,4 +42,3 @@ class ChatLog(models.Model):
     bot = models.ForeignKey(Bot, on_delete=models.CASCADE)
     response = models.ForeignKey(BotResponse, on_delete=models.CASCADE)
     message = models.CharField(max_length=255)
-

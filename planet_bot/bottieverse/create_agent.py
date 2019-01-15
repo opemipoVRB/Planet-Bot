@@ -47,34 +47,5 @@ $$***************************************************************************$$
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$                                                                                           
 """
 
-import requests
-
-URL = 'https://console.dialogflow.com/api-client/#/login'
-EMAIL = 'deniscaster@gmail.com'
-PASSWORD = 'denis@govbot2018'
-session = requests.Session()
-session.get(URL)
-print(session.cookies['XSRF-TOKEN'])
-
-#
-if 'csrftoken' in session.cookies:
-    csrftoken = session.cookies['csrftoken']
-    print("1 ", csrftoken)
-else:
-    csrftoken = session.cookies['XSRF-TOKEN']
-    print("2 ", csrftoken)
-
-headers = {'User-Agent': 'Mozilla/5.0'}
-
-# payload = {'username': EMAIL, 'password': PASSWORD, 'csrfmiddlewaretoken': csrftoken}
-# login = session.post(URL,
-#                      headers=headers, data=payload)
-
-login_data = dict(username=EMAIL, password=PASSWORD, csrfmiddlewaretoken=csrftoken, next='/')
-r = session.post(URL, data=login_data, headers=dict(Referer=URL))
-
-
-# print(login.text)
-print(f'Login status {r.status_code}')
 
 

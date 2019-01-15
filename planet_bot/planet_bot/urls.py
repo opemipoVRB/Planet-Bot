@@ -20,8 +20,10 @@ admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('users/', include('django.contrib.auth.urls')),
     path('bottieverse/', include("bottieverse.urls")),
-    path('', RedirectView.as_view(url='/bottieverse/')),
+    path('', RedirectView.as_view(url='/bottieverse/home/')),
+    path('bottieverse/', RedirectView.as_view(url='/bottieverse/home/')),
 
 ]
 

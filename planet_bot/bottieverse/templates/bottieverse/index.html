@@ -1,10 +1,12 @@
-{% if bot_list %}<pre>
+<h1>Tenants </h1>
+
+{% if tenants %}<pre>
 <ul>
-<ul>{% for bot in bot_list %}</ul>
+<ul>{% for tenant in tenants %}</ul>
 </ul>
 <ul>
 <ul>
-    <li><a id="" href="{% url 'tenant_bot' bot.name %}"> {{ bot.name }}</a></li>
+    <li><a id="tenant" href="{% url 'tenant' tenant.name %}"> {{ tenant.name }}</a></li>
 </ul>
 </ul>
 <ul>{% endfor %}</ul>
@@ -14,6 +16,6 @@
 
 {% else %}
 
-No chats are available.
+No tenant are available.
 
 {% endif %}

@@ -1,0 +1,15 @@
+<form id="create_bot"  method="post" novalidate>
+    {% csrf_token %}
+    <fieldset>
+   <legend>Create a Bot</legend>
+  <!-- One "tab" for each step in the form: -->
+        <div class="tab">
+                {{form.as_p}}
+        </div>
+        <input type="submit" value="Create">
+    </fieldset>
+
+</form>
+
+
+<a href="">Create new intents </a>

@@ -1,0 +1,21 @@
+<a href="{% url 'create-bot' tenants.name %}">Create a new chatbot</a>
+
+
+<h1>My Bots</h1>
+{% if bot_list %}<pre>
+<ul>
+<ul>{% for bot in bot_list %}</ul>
+</ul>
+<ul>
+<ul>
+    <li><a id="bots" href="{% url 'tenant-bot' bot.name %}"> {{ bot.name }}</a></li>
+</ul>
+</ul>
+<ul>{% endfor %}</ul>
+</pre>
+
+{% else %}
+
+No chatbots are available.
+
+{% endif %}

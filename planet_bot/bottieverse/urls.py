@@ -50,9 +50,38 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 from django.urls import path
 
+from .views import *
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('<bot_name>', views.tenant_bot, name='tenant_bot'),
+
+    # Authentication and User Managment URLConf
+    path('signup/', views.SignUp.as_view(), name='signup'),
+    path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name="login"),
+    path('logout/', auth_views.LogoutView.as_view(template_name='accounts/logout.html'), name="logout"),
+    path('change-password/', auth_views.PasswordChangeView.as_view(template_name='accounts/change-password.html'),
+         name='password_change'),
+    path('reset-password/', auth_views.PasswordResetView.as_view(template_name='accounts/reset-password.html'),
+         name="password_reset"),
+
+    # Application URLConf
+    path('home/', IndexView.as_view(), name="index"),
+    # path('profile/<tenant>/', ProfileView.as_view()),
+    path('bot-profile/<int:pk>/', BotProfileView.as_view(), name="bot_profile"),
+    path('bot-garden/<int:pk>/', BotGardenView.as_view(), name="bot_garden"),
+    path('tenant/<int:pk>', TenantView.as_view(), name="tenant"),
+    path('bots/<bot_name>', PreviewBot.as_view(), name='tenant-bot'),
+    path('create/bot/<int:pk>/', CreateBotView.as_view(), name='create-bot'),
+    path('create/bot/intent/<int:pk>', CreateIntentView.as_view(), name='create-intent'),
+    path('intents/<int:pk>/', IntentListView.as_view(), name='intent-list'),
 ]
+
+#  users/ login/ [name='login']
+# users/ logout/ [name='logout']
+# users/ password_change/ [name='password_change']
+# users/ password_change/done/ [name='password_change_done']
+# users/ password_reset/ [name='password_reset']
+# users/ password_reset/done/ [name='password_reset_done']
+# users/ reset/<uidb64>/<token>/ [name='password_reset_confirm']
+# users/ reset/done/ [name='password_reset_complete']
